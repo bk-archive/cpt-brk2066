@@ -37,9 +37,11 @@ namespace bkfunction
             }
             else
             {
-                double sentimentValue = double.Parse(sentiment);
-               
-               return sentimentValue > 0.49 ?
+               double sentimentValue = double.Parse(sentiment.Substring(0,3));
+
+                log.Info(name + " is " +  sentimentValue*100 + " % happy");
+
+                return sentimentValue > 0.49 ?
                 req.CreateResponse(HttpStatusCode.OK, name + " is happy") :
                 req.CreateResponse(HttpStatusCode.OK, name + " is not happy");
             }
