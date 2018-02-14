@@ -13,8 +13,6 @@ namespace bkfunction
         [FunctionName("Function1")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
-            log.Info("C# HTTP trigger function processed a request.");
-
             // parse query parameter
             string name = req.GetQueryNameValuePairs()
                 .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
@@ -38,10 +36,14 @@ namespace bkfunction
             else
             {
                 double sentimentValue = double.Parse(sentiment.Substring(0,3));
-                
+
+
+                log.Info(name + " is " + sentimentValue + "% happy");
+
                 return sentimentValue > 0.49 ?
                 req.CreateResponse(HttpStatusCode.OK, name + " is happy") :
                 req.CreateResponse(HttpStatusCode.OK, name + " is not happy");
+
             }
         }
     }
