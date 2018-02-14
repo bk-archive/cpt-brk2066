@@ -43,9 +43,6 @@ namespace bkfunction
                 req.CreateResponse(HttpStatusCode.OK, name + " is happy") :
                 req.CreateResponse(HttpStatusCode.OK, name + " is not happy");
             }
-            
-            
-                
         }
     }
 }
